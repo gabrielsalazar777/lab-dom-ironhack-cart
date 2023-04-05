@@ -55,7 +55,7 @@ function removeProduct(event) {
 // nullClone.style.display = 'none';
 // const products = document.querySelector(".product");
 
-
+const products = document.querySelector(".product");
 
 function createProduct() {
   //... your code goes here
@@ -65,9 +65,9 @@ function createProduct() {
   let productPrice = productValues[1].value;
 
   console.log(productPrice);
-  const products = document.querySelector(".product");
   const productClone = products.cloneNode(true);
-  products.classList.remove('hidden');
+  // product.classList.remove('hidden');
+  const tableBody = document.querySelector("tbody");
   const productNameSpan = productClone.querySelector(".name span");
   const productPriceSpan = productClone.querySelector(".price span");
   const productQuantitySpan = productClone.querySelector(".quantity input");
@@ -79,8 +79,8 @@ function createProduct() {
 
   const deleteBtn = productClone.querySelector(".action button");
   deleteBtn.addEventListener("click", removeProduct);
-
-  products.parentElement.appendChild(productClone);
+  tableBody.appendChild(productClone);
+  // products.parentElement.appendChild(productClone);
 
   productValues[0].value = "";
   productValues[1].value = 0;
