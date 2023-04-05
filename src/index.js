@@ -4,21 +4,14 @@ window.addEventListener("load", () => {
 
   //... your code goes here
 
-  const deleteProductBtn = document.querySelectorAll('.action button');
+  const deleteProductBtn = document.querySelectorAll(".action button");
   deleteProductBtn.forEach((e) => {
-    e.addEventListener('click', removeProduct);
-  })
-  // deleteProductBtn.addEventListener('click', removeProduct);
+    e.addEventListener("click", removeProduct);
+  });
 
-  const allProducts = document.querySelectorAll('.product');
-
-
-
-  // allProducts.forEach((e)=>{
-  //   const deleteProductBtn = e.querySelector('.action button')
-  //   e.addEventListener('click', removeProduct);
-  // })
-
+  // const createProduct = document.querySelector('.create-product')
+  const createBtn = document.getElementById("create");
+  createBtn.addEventListener("click", createProduct);
 });
 // ITERATION 1
 
@@ -29,29 +22,22 @@ function updateSubtotal(product) {
   const quantity = product.querySelector(".quantity input");
   const subtotal = product.querySelector(".subtotal span");
 
-  // const totalValueParent = document.getElementById("total-value");
-  // const totalValueSpan = totalValueParent.querySelector('span');
   subtotal.textContent = Number(price.textContent) * Number(quantity.value);
   console.log(subtotal.textContent);
   return subtotal.textContent;
 }
 
 function calculateAll() {
-  // code in the following two lines is added just for testing purposes.
-  // it runs when only iteration 1 is completed. at later point, it can be removed.
   let totalSum = 0;
-  let total = document.querySelector('#total-value span')
+  let total = document.querySelector("#total-value span");
 
-  const allProducts = document.querySelectorAll('.product');
-  allProducts.forEach((e, i)=>{
-    console.log(e)
-    totalSum += Number(updateSubtotal(e))
+  const allProducts = document.querySelectorAll(".product");
+  allProducts.forEach((e, i) => {
+    console.log(e);
+    totalSum += Number(updateSubtotal(e));
     console.log(totalSum);
-  })
+  });
   total.textContent = totalSum;
-
-  // ITERATION 3
-  //... your code goes here
 }
 
 // ITERATION 4
@@ -64,7 +50,38 @@ function removeProduct(event) {
 }
 
 // ITERATION 5
+// const products = document.querySelector(".product");
+// const nullClone = products.cloneNode(true);
+// nullClone.style.display = 'none';
+// const products = document.querySelector(".product");
+
+
 
 function createProduct() {
   //... your code goes here
+  const createProduct = document.querySelector(".create-product");
+  const productValues = createProduct.querySelectorAll("input");
+  let productName = productValues[0].value;
+  let productPrice = productValues[1].value;
+
+  console.log(productPrice);
+  const products = document.querySelector(".product");
+  const productClone = products.cloneNode(true);
+  products.classList.remove('hidden');
+  const productNameSpan = productClone.querySelector(".name span");
+  const productPriceSpan = productClone.querySelector(".price span");
+  const productQuantitySpan = productClone.querySelector(".quantity input");
+  const productSubtotalSpan = productClone.querySelector(".subtotal span");
+  productNameSpan.textContent = productName;
+  productPriceSpan.textContent = productPrice;
+  productQuantitySpan.value = 0;
+  productSubtotalSpan.textContent = 0;
+
+  const deleteBtn = productClone.querySelector(".action button");
+  deleteBtn.addEventListener("click", removeProduct);
+
+  products.parentElement.appendChild(productClone);
+
+  productValues[0].value = "";
+  productValues[1].value = 0;
 }
