@@ -1,15 +1,11 @@
 window.addEventListener("load", () => {
   const calculatePricesBtn = document.getElementById("calculate");
   calculatePricesBtn.addEventListener("click", calculateAll);
-
-  //... your code goes here
-
   const deleteProductBtn = document.querySelectorAll(".action button");
   deleteProductBtn.forEach((e) => {
     e.addEventListener("click", removeProduct);
   });
 
-  // const createProduct = document.querySelector('.create-product')
   const createBtn = document.getElementById("create");
   createBtn.addEventListener("click", createProduct);
 });
@@ -17,7 +13,6 @@ window.addEventListener("load", () => {
 
 function updateSubtotal(product) {
   console.log("Calculating subtotal, yey!");
-  // ... your code goes here
   const price = product.querySelector(".price span");
   const quantity = product.querySelector(".quantity input");
   const subtotal = product.querySelector(".subtotal span");
@@ -46,14 +41,9 @@ function removeProduct(event) {
   const target = event.currentTarget.parentElement.parentElement;
   console.log("The target in remove is:", target);
   target.remove();
-  //... your code goes here
 }
 
 // ITERATION 5
-// const products = document.querySelector(".product");
-// const nullClone = products.cloneNode(true);
-// nullClone.style.display = 'none';
-// const products = document.querySelector(".product");
 
 const products = document.querySelector(".product");
 
