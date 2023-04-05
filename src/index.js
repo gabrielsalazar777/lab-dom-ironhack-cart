@@ -1,3 +1,25 @@
+window.addEventListener("load", () => {
+  const calculatePricesBtn = document.getElementById("calculate");
+  calculatePricesBtn.addEventListener("click", calculateAll);
+
+  //... your code goes here
+
+  const deleteProductBtn = document.querySelectorAll('.action button');
+  deleteProductBtn.forEach((e) => {
+    e.addEventListener('click', removeProduct);
+  })
+  // deleteProductBtn.addEventListener('click', removeProduct);
+
+  const allProducts = document.querySelectorAll('.product');
+
+
+
+  // allProducts.forEach((e)=>{
+  //   const deleteProductBtn = e.querySelector('.action button')
+  //   e.addEventListener('click', removeProduct);
+  // })
+
+});
 // ITERATION 1
 
 function updateSubtotal(product) {
@@ -17,18 +39,16 @@ function updateSubtotal(product) {
 function calculateAll() {
   // code in the following two lines is added just for testing purposes.
   // it runs when only iteration 1 is completed. at later point, it can be removed.
+  let totalSum = 0;
+  let total = document.querySelector('#total-value span')
 
-  // const singleProduct = document.querySelector('.product');
-  // updateSubtotal(singleProduct);
-
-  // end of test
-
-  // ITERATION 2
-  const allProducts = document.querySelectorAll(".product");
-  allProducts.forEach((e, i) => {
-    console.log(e.className);
-    updateSubtotal(e);
-  });
+  const allProducts = document.querySelectorAll('.product');
+  allProducts.forEach((e, i)=>{
+    console.log(e)
+    totalSum += Number(updateSubtotal(e))
+    console.log(totalSum);
+  })
+  total.textContent = totalSum;
 
   // ITERATION 3
   //... your code goes here
@@ -37,8 +57,9 @@ function calculateAll() {
 // ITERATION 4
 
 function removeProduct(event) {
-  const target = event.currentTarget;
+  const target = event.currentTarget.parentElement.parentElement;
   console.log("The target in remove is:", target);
+  target.remove();
   //... your code goes here
 }
 
@@ -47,10 +68,3 @@ function removeProduct(event) {
 function createProduct() {
   //... your code goes here
 }
-
-window.addEventListener("load", () => {
-  const calculatePricesBtn = document.getElementById("calculate");
-  calculatePricesBtn.addEventListener("click", calculateAll);
-
-  //... your code goes here
-});
