@@ -12,13 +12,12 @@ window.addEventListener("load", () => {
 // ITERATION 1
 
 function updateSubtotal(product) {
-  console.log("Calculating subtotal, yey!");
+  // console.log("Calculating subtotal, yey!");
   const price = product.querySelector(".price span");
   const quantity = product.querySelector(".quantity input");
   const subtotal = product.querySelector(".subtotal span");
 
   subtotal.textContent = Number(price.textContent) * Number(quantity.value);
-  console.log(subtotal.textContent);
   return subtotal.textContent;
 }
 
@@ -28,9 +27,7 @@ function calculateAll() {
 
   const allProducts = document.querySelectorAll(".product");
   allProducts.forEach((e, i) => {
-    console.log(e);
     totalSum += Number(updateSubtotal(e));
-    console.log(totalSum);
   });
   total.textContent = totalSum;
 }
@@ -39,7 +36,7 @@ function calculateAll() {
 
 function removeProduct(event) {
   const target = event.currentTarget.parentElement.parentElement;
-  console.log("The target in remove is:", target);
+  // console.log("The target in remove is:", target);
   target.remove();
 }
 
@@ -54,9 +51,7 @@ function createProduct() {
   let productName = productValues[0].value;
   let productPrice = productValues[1].value;
 
-  console.log(productPrice);
   const productClone = products.cloneNode(true);
-  // product.classList.remove('hidden');
   const tableBody = document.querySelector("tbody");
   const productNameSpan = productClone.querySelector(".name span");
   const productPriceSpan = productClone.querySelector(".price span");
@@ -70,7 +65,6 @@ function createProduct() {
   const deleteBtn = productClone.querySelector(".action button");
   deleteBtn.addEventListener("click", removeProduct);
   tableBody.appendChild(productClone);
-  // products.parentElement.appendChild(productClone);
 
   productValues[0].value = "";
   productValues[1].value = 0;
